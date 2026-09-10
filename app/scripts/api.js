@@ -86,6 +86,17 @@ export async function getShowById(showId) {
   // - una per il cast (endpoint /shows/{id}/cast) --> cast
   // - una per gli episodi (endpoint /shows/{id}/episodes) --> episodes
   // Restituisci un oggetto che unisce i dettagli della serie con un campo _embedded che contiene cast ed episodi.
+  const id = Number(showId);
+  if (!Number.isInteger(id) || id <= 0) {
+    throw Error('ID della serie non valido');
+  }
+
+  const show = await requestJson(`${API_BASE}/shows/${id}`, 'Errore nel recupero dettagli serie');
+  const cast = await requestJson(`${API_BASE}/shows/${id}/cast`, 'Errore nel recupero cast');
+  const episodes = await requestJson(
+    `${API_BASE}/shows/${id}/episodes`,
+    'Errore nel recupero episodi'
+  );
 
   return {
     ...show,
