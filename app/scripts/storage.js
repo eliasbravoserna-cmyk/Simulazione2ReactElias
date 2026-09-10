@@ -7,23 +7,6 @@ const STORAGE_KEYS = {
   TO_WATCH: 'tv_to_watch',
 };
 
-const test = [
-  {
-    id: 17861,
-    name: 'Dark',
-    language: 'German',
-    genres: ['Drama', 'Science-Fiction', 'Supernatural'],
-    status: 'Ended',
-    premiered: '2017-12-01',
-    rating: 8.2,
-    image: 'https://static.tvmaze.com/uploads/images/medium_portrait/504/1262352.jpg',
-    network: 'Netflix',
-    summary:
-      '<p>A family saga with a supernatural twist, <b>Dark</b> is set in a German town in present day where the disappearance of two young children exposes the double lives and fractured relationships among four families.</p>',
-    timestamp: 1777911877354,
-  },
-];
-
 /**
  * Legge un array serializzato da localStorage restituendo un array vuoto in caso di errore o dati mancanti.
  * @param {string} storageKey
@@ -120,7 +103,9 @@ export function getHistory() {
  * @param {number} timestamp
  */
 export function removeHistoryEntry(timestamp) {
-  const history = readStoredArray(STORAGE_KEYS.HISTORY).filter((entry) => entry.timestamp !== timestamp);
+  const history = readStoredArray(STORAGE_KEYS.HISTORY).filter(
+    (entry) => entry.timestamp !== timestamp
+  );
   writeStoredArray(STORAGE_KEYS.HISTORY, history);
 }
 
