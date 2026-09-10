@@ -130,7 +130,11 @@ function Search() {
                 }}
               />
               {/* TODO 2: Aggiungi le classi CSS mancanti per mostrare correttamente il pulsante di ricerca */}
-              <button id="btn-search-show" className="" onClick={() => searchByTitle()}>
+              <button
+                id="btn-search-show"
+                className="btn btn-primary"
+                onClick={() => searchByTitle()}
+              >
                 Cerca
               </button>
             </div>
